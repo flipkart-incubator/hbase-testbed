@@ -1,0 +1,196 @@
+{
+  "multiZoneStoreConfig": {
+    "defaultConfig": {
+      "hbaseConfig": {
+        "hbase.client.pause": "50",
+        "hbase.client.pause.cqtbe": "1000",
+        "hbase.client.retries.number": "10",
+        "hbase.client.max.total.tasks": "500",
+        "hbase.client.max.perserver.tasks": "50",
+        "hbase.client.max.perregion.tasks": "10",
+        "hbase.client.ipc.pool.type": "RoundRobinPool",
+        "hbase.client.ipc.pool.size": "10",
+        "hbase.client.operation.timeout": "2000",
+        "hbase.client.meta.operation.timeout": "5000",
+        "hbase.rpc.timeout": "200",
+        "hbase.rpc.read.timeout": "200",
+        "hbase.rpc.write.timeout": "200",
+        "hbase.rpc.shortoperation.timeout": "100",
+        "hbase.client.write.buffer": "20971520"
+      }
+    },
+    "zones": {
+      "REGION_A": {
+        "sites": {
+          "ZONE_A": {
+            "poolSize": 40,
+            "indexPurgeQueueSize": 30,
+            "storeName": "zoneAA",
+            "hbaseConfig": {
+              "hbase.zookeeper.quorum": "preprod-yak-perf1-zk-1,preprod-yak-perf1-zk-2,preprod-yak-perf1-zk-3"
+            }
+          }
+        }
+      },
+      "REGION_B": {
+        "sites": {
+          "ZONE_A": {
+            "poolSize": 40,
+            "indexPurgeQueueSize": 30,
+            "storeName": "zoneBA",
+            "hbaseConfig": {
+              "hbase.zookeeper.quorum": "preprod-yak-perf2-zk-1,preprod-yak-perf2-zk-2,preprod-yak-perf2-zk-3"
+            }
+          }
+        }
+      }
+    }
+  },
+  "componentConfigs": {
+    "zoneAA": {
+      "ZOOKEEPER": [
+        "preprod-yak-perf1-zk-1",
+        "preprod-yak-perf1-zk-2",
+        "preprod-yak-perf1-zk-3"
+      ],
+      "JOURNAL_NODE": [
+        "preprod-yak-perf1-zk-1",
+        "preprod-yak-perf1-zk-2",
+        "preprod-yak-perf1-zk-3"
+      ],
+      "NAME_NODE": [
+        "preprod-yak-perf1-nn-1",
+        "preprod-yak-perf1-nn-2"
+      ],
+      "MASTER": [
+        "preprod-yak-perf1-nn-1",
+        "preprod-yak-perf1-nn-2"
+      ],
+      "DATA_NODE": [
+        "preprod-yak-perf1-test-dn-1",
+        "preprod-yak-perf1-test-dn-2",
+        "preprod-yak-perf1-test-dn-3",
+        "preprod-yak-perf1-test-dn-4",
+        "preprod-yak-perf1-test-dn-5"
+      ],
+      "REGION_SERVER": [
+        "preprod-yak-perf1-test-dn-1",
+        "preprod-yak-perf1-test-dn-2",
+        "preprod-yak-perf1-test-dn-3",
+        "preprod-yak-perf1-test-dn-4",
+        "preprod-yak-perf1-test-dn-5"
+      ]
+    },
+    "zoneBA": {
+      "ZOOKEEPER": [
+        "preprod-yak-perf2-zk-1",
+        "preprod-yak-perf2-zk-2",
+        "preprod-yak-perf2-zk-3"
+      ],
+      "JOURNAL_NODE": [
+        "preprod-yak-perf2-zk-1",
+        "preprod-yak-perf2-zk-2",
+        "preprod-yak-perf2-zk-3"
+      ],
+      "NAME_NODE": [
+        "preprod-yak-perf2-nn-1",
+        "preprod-yak-perf2-nn-2"
+      ],
+      "MASTER": [
+        "preprod-yak-perf2-nn-1",
+        "preprod-yak-perf2-nn-2"
+      ],
+      "DATA_NODE": [
+        "preprod-yak-perf2-test-dn-1",
+        "preprod-yak-perf2-test-dn-2",
+        "preprod-yak-perf2-test-dn-3",
+        "preprod-yak-perf2-test-dn-4",
+        "preprod-yak-perf2-test-dn-5"
+      ],
+      "REGION_SERVER": [
+        "preprod-yak-perf2-test-dn-1",
+        "preprod-yak-perf2-test-dn-2",
+        "preprod-yak-perf2-test-dn-3",
+        "preprod-yak-perf2-test-dn-4",
+        "preprod-yak-perf2-test-dn-5"
+      ]
+    }
+  },
+  "pulsaConfig": {
+    "endpoint": "http://viesti.flipkart.com:80",
+    "authEndpoint":"https://auth.flipkart.com",
+    "authClientId": "test-user",
+    "authClientSecret":"xxxxxxxx",
+    "numOfConsumer": "3",
+    "topics":["persistent://preprod-yak/topics/test-v"]
+  },
+  "kafkaConfig": {
+    "zookeeper": [
+      "preprod-yak-zk-1",
+      "preprod-yak-zk-2",
+      "preprod-yak-zk-3"
+    ],
+    "zk_paths": [
+      "preprod-kafka"
+    ],
+    "brokers": [
+      "preprod-kafka-1",
+      "preprod-kafka-2",
+      "preprod-kafka-3"
+    ],
+    "topics": [
+      "yak-preprod_perf1_test1"
+    ]
+  },
+  "defaultSite": "zoneAA",
+  "replicationBuffer": 150000,
+  "yakConsoleEndpoint": "console.flipkart.com",
+  "rsgroup": "preprod_perf1_test1",
+  "namespace": "yaktest",
+  "tableName": "xbejijsyuzegdkbq",
+  "tableNameBackup": "xbejijsyuzegdkbq_backup",
+  "username": "user",
+  "passphrase": "pass",
+  "sshKeyPath": "/tmp/user",
+  "userencode": "xxx",
+  "shellCommands": {
+    "start": {
+      "ZOOKEEPER": "hbase zookeeper start",
+      "JOURNAL_NODE": "hdfs journalnode start",
+      "NAME_NODE": "hdfs namenode start",
+      "MASTER": "hbase master start",
+      "DATA_NODE": "hdfs datanode start",
+      "REGION_SERVER": "hbase regionserver start"
+    },
+    "stop": {
+      "ZOOKEEPER": "hbase zookeeper stop",
+      "JOURNAL_NODE": "hdfs journalnode stop",
+      "NAME_NODE": "hdfs namenode stop",
+      "MASTER": "hbase master stop",
+      "DATA_NODE": "hdfs datanode stop",
+      "REGION_SERVER": "hbase regionserver stop"
+    },
+    "status": {
+      "ZOOKEEPER": "hbase zookeeper status | awk '{ print $1 }'",
+      "JOURNAL_NODE": "hdfs journalnode status | awk '{ print $1 }'",
+      "NAME_NODE": "hdfs namenode status | awk '{ print $1 }'",
+      "MASTER": "hbase master status | awk '{ print $1 }'",
+      "DATA_NODE": "hdfs datanode status | awk '{ print $1 }'",
+      "REGION_SERVER": "hbase regionserver status | awk '{ print $1 }'"
+    },
+    "kill": {
+      "ZOOKEEPER": "sudo kill -9 `hbase zookeeper status | awk '{ print $1 }'`",
+      "JOURNAL_NODE": "sudo kill -9 `hdfs journalnode status | awk '{ print $1 }'`",
+      "NAME_NODE": "sudo kill -9 `hdfs namenode status | awk '{ print $1 }'`",
+      "MASTER": "sudo kill -9 `hbase master status | awk '{ print $1 }'`",
+      "DATA_NODE": "sudo kill -9 `hdfs datanode status | awk '{ print $1 }'`",
+      "REGION_SERVER": "sudo kill -9 `hbase regionserver status | awk '{ print $1 }'`"
+    },
+    "regionServerReloadCommand": "hbase regionserver reload",
+    "masterInconsistenciesCommand": "hbase --internal-classpath hbck '%s' | grep inconsistencies | awk '{ print $1 }'",
+    "masterShellCommand": "hbase shell",
+    "hbaseCommand": "hbase",
+    "hadoopCommand": "hdfs",
+    "validateRegionRackAwarenessCommand": "bash /usr/share/yak/rack_utils/rack_spread_validator.bash %s"
+  }
+}
